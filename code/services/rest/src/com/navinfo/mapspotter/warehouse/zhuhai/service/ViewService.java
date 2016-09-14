@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.mercator.TileUtils;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import com.navinfo.mapspotter.process.convert.WarehouseDataType;
 import com.navinfo.mapspotter.warehouse.zhuhai.dao.ViewDao;
+import com.navinfo.mapspotter.warehouse.zhuhai.util.DataSource;
 import com.navinfo.mapspotter.warehouse.zhuhai.util.PropertiesUtil;
 import com.vector.tile.VectorTileEncoder;
 import com.vividsolutions.jts.geom.Coordinate;
@@ -55,7 +55,7 @@ public class ViewService {
                 Coordinate coordinate = new Coordinate(LinkCoordinate.get(0), LinkCoordinate.get(1));
                 Point point = geometryFactory.createPoint(coordinate);
                 TileUtils.convert2Piexl(x, y, z, point);
-                vtm.addFeature(WarehouseDataType.LayerType.Events.toString(), attributes, point);
+                vtm.addFeature(DataSource.LayerType.Events.toString(), attributes, point);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,10 +92,10 @@ public class ViewService {
                     TileUtils.convert2Piexl(x, y, z, line);
 
                     if (queryType.equals("halfhour")) {
-                        vtm.addFeature(WarehouseDataType.LayerType.ForecastHalfhour.toString(), attributes, line);
+                        vtm.addFeature(DataSource.LayerType.ForecastHalfhour.toString(), attributes, line);
                     }
                     else if (queryType.equals("onehour")) {
-                        vtm.addFeature(WarehouseDataType.LayerType.ForecastOnehour.toString(), attributes, line);
+                        vtm.addFeature(DataSource.LayerType.ForecastOnehour.toString(), attributes, line);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
