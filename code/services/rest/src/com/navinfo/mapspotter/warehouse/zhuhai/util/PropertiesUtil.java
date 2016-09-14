@@ -16,9 +16,9 @@ public class PropertiesUtil {
     //获取配置文件数据库信息
     public static JSONObject getProperties() {
         String rootPath = PropertiesUtil.class.getClassLoader().getResource("").getPath();
-        System.out.println("root path:" + rootPath);
+//        System.out.println("root path:" + rootPath);
         File directory = new File(rootPath + "/db.properties");
-        System.out.println("file path:" + directory.toString());
+//        System.out.println("file path:" + directory.toString());
         String filePath = directory.getAbsolutePath();
         Properties props = new Properties();
         InputStream in = null;
@@ -41,7 +41,8 @@ public class PropertiesUtil {
             int mongoPort = Integer.valueOf(props.getProperty("mongoPort"));
             String mongoDb = props.getProperty("mongoDb");
             String eventColName = props.getProperty("eventColName");
-            String forecastColName = props.getProperty("forecastColName");
+            String halfhour_forecastColName = props.getProperty("halfhour_forecastColName");
+            String onehour_forecastColName = props.getProperty("onehour_forecastColName");
             String trafficColName = props.getProperty("trafficColName");
 
             propObj = new JSONObject();
@@ -59,7 +60,8 @@ public class PropertiesUtil {
             propObj.put("mongoPort", mongoPort);
             propObj.put("mongoDb", mongoDb);
             propObj.put("eventColName", eventColName);
-            propObj.put("forecastColName", forecastColName);
+            propObj.put("halfhour_forecastColName", halfhour_forecastColName);
+            propObj.put("onehour_forecastColName", onehour_forecastColName);
             propObj.put("trafficColName", trafficColName);
 
 //            System.out.println(propObj.toString());

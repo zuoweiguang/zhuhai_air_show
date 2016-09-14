@@ -1,14 +1,16 @@
 package com.navinfo.mapspotter.warehouse.zhuhai.listener;
 
-import com.navinfo.mapspotter.warehouse.zhuhai.data.ActualTimeEvent;
 import com.navinfo.mapspotter.warehouse.zhuhai.data.ActualTimeForecast;
 
 /**
  * Created by zuoweiguang on 2016/9/6.
  */
 public class ForecastsWorkThread implements Runnable {
-    public ForecastsWorkThread() {
 
+    private String zoneTime;
+
+    public ForecastsWorkThread(String zoneTime) {
+        this.zoneTime = zoneTime;
     }
 
     @Override
@@ -17,7 +19,7 @@ public class ForecastsWorkThread implements Runnable {
 //        System.err.println("我被线程池调用执行啦~！");
 //        System.out.println("");
         ActualTimeForecast atf = new ActualTimeForecast();
-        atf.getForecast();
+        atf.getForecast(this.zoneTime);
     }
 
 }

@@ -1,12 +1,10 @@
 package com.navinfo.mapspotter.warehouse.zhuhai.data;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.IntegerCodec;
 import com.mongodb.*;
 import com.navinfo.mapspotter.foundation.util.MercatorUtil;
 import com.navinfo.mapspotter.warehouse.zhuhai.util.PropertiesUtil;
 import com.vividsolutions.jts.geom.*;
-import com.vividsolutions.jts.io.ParseException;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -23,7 +21,7 @@ public class ActualTimeForecast extends ActualTimeRequest {
     private Logger logger = Logger.getLogger(ActualTimeEvent.class);
     private static JSONObject propObj = PropertiesUtil.getProperties();
 
-    public void getForecast() {
+    public void getForecast(String zoneTime) {
 
         String tile = null;
 
@@ -33,13 +31,18 @@ public class ActualTimeForecast extends ActualTimeRequest {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
             String dateStr = sdf.format(new Date());
             String params = "&timestamp=" + dateStr;
-            String result = sendGet(url + params);
+            String result = sendGet(url + params + zoneTime);
             String[] splitText = result.split("#");
             String[] valueText = splitText[1].split("\\|");
             System.out.println("current data total:" + valueText.length);
 
             List<DBObject> bulk = new ArrayList<>();
-            DBCollection col = getMongoCollection("forecast");
+            DBCollection col = null;
+            if (zoneTime.equals("&zone=30")) {
+                col = getMongoCollection("forecast_halfhour");
+            } else if (zoneTime.equals("&zone=60")) {
+                col = getMongoCollection("forecast_onehour");
+            }
             Connection pgConn = getPostgisConnection();
 
             //获取link对应的geometry
@@ -97,8 +100,11 @@ public class ActualTimeForecast extends ActualTimeRequest {
                     col.update(query, update, true, false);
                     count ++;
 
-                    if (count % 2000 == 0) {
-                        System.out.println("forecast make count:" + count);
+                    if (count % 2000 == 0 && zoneTime.equals("&zone=30")) {
+                        System.out.println("forecast halfhour make count:" + count);
+                    }
+                    else if (count % 2000 == 0 && zoneTime.equals("&zone=60")) {
+                        System.out.println("forecast onehour make count:" + count);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -119,7 +125,7 @@ public class ActualTimeForecast extends ActualTimeRequest {
 
     public static void main(String[] args) {
 
-        new ActualTimeForecast().getForecast();
+        new ActualTimeForecast().getForecast("&zone=30");
 
 //        try {
 //            ActualTimeForecast af = new ActualTimeForecast();

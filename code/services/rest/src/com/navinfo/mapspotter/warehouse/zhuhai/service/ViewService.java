@@ -28,7 +28,6 @@ public class ViewService {
 
     public static GeometryFactory geometryFactory = new GeometryFactory();
     private static ViewService instance;
-    public WKTReader reader = new WKTReader();
 
     private ViewService() {
     }
@@ -56,7 +55,7 @@ public class ViewService {
                 Coordinate coordinate = new Coordinate(LinkCoordinate.get(0), LinkCoordinate.get(1));
                 Point point = geometryFactory.createPoint(coordinate);
                 TileUtils.convert2Piexl(x, y, z, point);
-                vtm.addFeature(WarehouseDataType.LayerType.TrafficEvents.toString(), attributes, point);
+                vtm.addFeature(WarehouseDataType.LayerType.Events.toString(), attributes, point);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,26 +64,42 @@ public class ViewService {
         }
     }
 
-    public byte[] getForecasts(int z, int x, int y) {
+    public byte[] getForecasts(int z, int x, int y, String queryType) {
         VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
+        WKTReader reader = new WKTReader();
         byte[] result = null;
         try {
             JSONObject prop = PropertiesUtil.getProperties();
-            DBCollection col = viewDao.getCollection(prop.getString("forecastColName"));
+            DBCollection col = null;
+            if (queryType.equals("halfhour")) {
+                col = viewDao.getCollection(prop.getString("halfhour_forecastColName"));
+            }
+            else if (queryType.equals("onehour")) {
+                col = viewDao.getCollection(prop.getString("onehour_forecastColName"));
+            }
+
             List<DBObject> forecastList = viewDao.getForecasts(col, z, x, y);
             for (DBObject forecast: forecastList) {
-                Map<String, Object> attributes = new HashMap<>();
-                attributes.put("link_id", forecast.get("link_id"));
-                attributes.put("direct", forecast.get("direct"));
-                attributes.put("road_class", forecast.get("road_class"));
-                attributes.put("status", forecast.get("status"));
-                attributes.put("travel_time", forecast.get("travel_time"));
-                String geometryStr = (String)forecast.get("geometry");
-                LineString line = (LineString) reader.read(geometryStr);
-                TileUtils.convert2Piexl(x, y, z, line);
+                try {
+                    Map<String, Object> attributes = new HashMap<>();
+                    attributes.put("link_id", forecast.get("link_id"));
+                    attributes.put("direct", forecast.get("direct"));
+                    attributes.put("road_class", forecast.get("road_class"));
+                    attributes.put("status", forecast.get("status"));
+                    attributes.put("travel_time", forecast.get("travel_time"));
+                    String geometryStr = (String)forecast.get("geometry");
+                    LineString line = (LineString) reader.read(geometryStr);
+                    TileUtils.convert2Piexl(x, y, z, line);
 
-                vtm.addFeature(WarehouseDataType.LayerType.Forecast.toString(),
-                        attributes, line);
+                    if (queryType.equals("halfhour")) {
+                        vtm.addFeature(WarehouseDataType.LayerType.ForecastHalfhour.toString(), attributes, line);
+                    }
+                    else if (queryType.equals("onehour")) {
+                        vtm.addFeature(WarehouseDataType.LayerType.ForecastOnehour.toString(), attributes, line);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

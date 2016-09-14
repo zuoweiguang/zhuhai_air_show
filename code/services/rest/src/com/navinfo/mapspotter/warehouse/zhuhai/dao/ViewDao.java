@@ -14,9 +14,8 @@ import java.util.List;
 public class ViewDao {
 
     private static ViewDao instance;
-    private Mongo mongo;
-    private DB db;
-    private DBCollection col;
+    private static JSONObject prop = PropertiesUtil.getProperties();
+    private static Mongo mongo = new MongoClient(prop.getString("mongoHost"), prop.getInteger("mongoPort"));
 
     private ViewDao() {
     }
@@ -29,10 +28,8 @@ public class ViewDao {
     }
 
     public DBCollection getCollection(String collectionName) {
-        JSONObject prop = PropertiesUtil.getProperties();
-        mongo = new MongoClient(prop.getString("mongoHost"), prop.getInteger("mongoPort"));
-        db = mongo.getDB(prop.getString("mongoDb"));
-        col = db.getCollection(collectionName);
+        DB db = mongo.getDB(prop.getString("mongoDb"));
+        DBCollection col = db.getCollection(collectionName);
         return col;
     }
 

@@ -36,12 +36,22 @@ public class ViewController {
     }
 
     @GET
-    @Path("/forecast/{z}/{x}/{y}")
+    @Path("/forecast_halfhour/{z}/{x}/{y}")
     @Produces("text/plain;charset=UTF-8")
-    public Response getForecasts(@PathParam("x") int x,
+    public Response getForecastsHalfhour(@PathParam("x") int x,
                                  @PathParam("y") int y,
                                  @PathParam("z") int z) {
-        byte[] result = viewService.getForecasts(z, x, y);
+        byte[] result = viewService.getForecasts(z, x, y, "halfhour");
+        return buildResponse(result);
+    }
+
+    @GET
+    @Path("/forecast_onehour/{z}/{x}/{y}")
+    @Produces("text/plain;charset=UTF-8")
+    public Response getForecastsOnehour(@PathParam("x") int x,
+                                         @PathParam("y") int y,
+                                         @PathParam("z") int z) {
+        byte[] result = viewService.getForecasts(z, x, y, "onehour");
         return buildResponse(result);
     }
 

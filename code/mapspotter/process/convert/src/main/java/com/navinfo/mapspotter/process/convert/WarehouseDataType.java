@@ -26,7 +26,9 @@ public class WarehouseDataType {
         Block,
         Traffic,
         BaoTouTraffic,
-        ZhuhaiAirShow,
+        ZhuhaiEvents,
+        ZhuhaiForecastHalfhour,
+        ZhuhaiForecastOnehour,
     }
 
     public enum LayerType {
@@ -52,8 +54,9 @@ public class WarehouseDataType {
         BlockHistory,
         TrafficStatus,
         BaotouTrafficStatus,
-        TrafficEvents,
-        Forecast,
+        Events,
+        ForecastHalfhour,
+        ForecastOnehour,
     }
 
     public static List<LayerType> getLayers(SourceType srcType) {
@@ -114,9 +117,16 @@ public class WarehouseDataType {
                 targetTypes.add(LayerType.BaotouTrafficStatus);
             }
             break;
-            case ZhuhaiAirShow:{
-                targetTypes.add(LayerType.TrafficEvents);
-                targetTypes.add(LayerType.Forecast);
+            case ZhuhaiEvents:{
+                targetTypes.add(LayerType.Events);
+            }
+            break;
+            case ZhuhaiForecastHalfhour:{
+                targetTypes.add(LayerType.ForecastHalfhour);
+            }
+            break;
+            case ZhuhaiForecastOnehour:{
+                targetTypes.add(LayerType.ForecastOnehour);
             }
             break;
         }
@@ -168,10 +178,12 @@ public class WarehouseDataType {
                 return SourceType.Block;
             case TrafficStatus:
                 return SourceType.Traffic;
-            case TrafficEvents:
-                return SourceType.ZhuhaiAirShow;
-            case Forecast:
-                return SourceType.ZhuhaiAirShow;
+            case Events:
+                return SourceType.ZhuhaiEvents;
+            case ForecastHalfhour:
+                return SourceType.ZhuhaiForecastHalfhour;
+            case ForecastOnehour:
+                return SourceType.ZhuhaiForecastOnehour;
         }
 
         return SourceType.Road;

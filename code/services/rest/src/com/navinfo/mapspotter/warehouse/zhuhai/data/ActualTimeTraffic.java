@@ -3,6 +3,8 @@ package com.navinfo.mapspotter.warehouse.zhuhai.data;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.navinfo.mapspotter.warehouse.zhuhai.util.Base64;
+import com.navinfo.mapspotter.warehouse.zhuhai.util.PropertiesUtil;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,51 +14,20 @@ import java.net.URLConnection;
 /**
  * Created by zuoweiguang on 2016/9/6.
  */
-public class ActualTimeTraffic {
+public class ActualTimeTraffic extends ActualTimeRequest {
 
-    public static String sendGet() {
-        String url = "http://192.168.59.235:8080/TEGateway/123456/RTICTraffic.json?bizcode=ths&adcode=440400&version=1501&datatype=3";
-        String result = "";
-        BufferedReader in = null;
-        try {
-            String urlNameString = url;
-            URL realUrl = new URL(urlNameString);
-            URLConnection connection = realUrl.openConnection();
-            connection.connect();
-            in = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream()));
-            String line;
-            while ((line = in.readLine()) != null) {
-                result += line;
-            }
-        } catch (Exception e) {
-            System.out.println("发送GET请求出现异常！" + e);
-            e.printStackTrace();
-        }
-        // 使用finally块来关闭输入流
-        finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
-//        System.out.println(result);
-        getTraffic(result);
-        return result;
-    }
+    private Logger logger = Logger.getLogger(ActualTimeEvent.class);
+    private static JSONObject propObj = PropertiesUtil.getProperties();
 
-
-    public static void getTraffic(String resps) {
-
+    public void getTraffic() {
         byte[] flowByte = null;
         byte[] eventByte = null;
-        try {
-            JSONObject jsonObj = JSONObject.parseObject(resps);
-            JSONObject result = jsonObj.getJSONObject("result");
-            JSONObject city = result.getJSONObject("cities").getJSONObject("city");
+        try{
+            String url = propObj.getString("ActualTimeTrafficUrl");
+            String result = sendGet(url);
+            JSONObject resultObj = JSONObject.parseObject(result);
+            JSONObject resultValue = resultObj.getJSONObject("result");
+            JSONObject city = resultValue.getJSONObject("cities").getJSONObject("city");
             String adcode = city.getString("adcode");
             String updatetime = city.getString("updatetime");
             String version = city.getString("version");
@@ -70,7 +41,7 @@ public class ActualTimeTraffic {
                 String event = mesh.getString("event");
                 System.out.print("flow:");
                 if (null != flow) {
-                        flowByte = Base64.decodeBase64(flow);
+                    flowByte = Base64.decodeBase64(flow);
 //                    for (int a = 0; a < flowByte.length; a ++) {
 //                        System.out.print(flowByte[a]);
 //                    }
@@ -88,13 +59,18 @@ public class ActualTimeTraffic {
                 System.out.println();
             }
             System.out.println("size:" + meshList.size());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
+
+
+
     public static void main(String[] args) {
-        ActualTimeTraffic.sendGet();
+        new ActualTimeTraffic().getTraffic();
     }
 
 }

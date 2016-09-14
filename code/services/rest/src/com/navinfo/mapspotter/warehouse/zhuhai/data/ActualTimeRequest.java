@@ -36,9 +36,10 @@ public abstract class ActualTimeRequest {
 
         String result = "";
         BufferedReader in = null;
+        URL realUrl = null;
         try {
             String urlNameString = url;
-            URL realUrl = new URL(urlNameString);
+            realUrl = new URL(urlNameString);
             URLConnection connection = realUrl.openConnection();
             connection.connect();
             in = new BufferedReader(new InputStreamReader(
@@ -71,8 +72,11 @@ public abstract class ActualTimeRequest {
         if (type.equals("events")) {
             return db.getCollection(propObj.getString("eventColName"));
         }
-        else if (type.equals("forecast")) {
-            return db.getCollection(propObj.getString("forecastColName"));
+        else if (type.equals("forecast_halfhour")) {
+            return db.getCollection(propObj.getString("halfhour_forecastColName"));
+        }
+        else if (type.equals("forecast_onehour")) {
+            return db.getCollection(propObj.getString("onehour_forecastColName"));
         }
         else if (type.equals("traffic")) {
             return db.getCollection(propObj.getString("trafficColName"));

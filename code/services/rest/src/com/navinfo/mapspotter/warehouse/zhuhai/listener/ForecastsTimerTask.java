@@ -20,7 +20,8 @@ public class ForecastsTimerTask extends TimerTask {
         // TODO 自定义
 //        System.err.println("号称每10秒钟跑一次哦！我要调用线程池去执行另外的任务");
         //让线程池去跑一个任务
-        PoolManager.pool.execute(new ForecastsWorkThread());
+        PoolManager.pool.execute(new ForecastsWorkThread("&zone=30"));
+        PoolManager.pool.execute(new ForecastsWorkThread("&zone=60"));
         context.log("--------------------[拥堵预测] 定時任务执行结束-----------------");
     }
 
