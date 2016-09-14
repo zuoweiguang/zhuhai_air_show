@@ -1,0 +1,17 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": {
+    "name": "extrusion",
+    "layout": {
+    },
+    "paint": {
+      "extrusion-color": "#FFEFD5",
+      "extrusion-antialias": true,
+      "extrusion-lighting-anchor": "viewport",
+      "extrusion-outline-color": "#909",
+      "extrusion-opacity": 1,
+      "extrusion-shadow-color": "#00f"
+    }
+  }
+}

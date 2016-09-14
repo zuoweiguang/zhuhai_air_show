@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.navinfo.mapspotter.process.loader.kafka.hdfs.HDFSProdu
+ cer
+

@@ -1,0 +1,197 @@
+.login-box {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  .popup {
+    position: relative;
+    margin: 100px auto 0 auto;
+    background-color: #fff;
+    width: 455px;
+    height: auto;
+    z-index: 100;
+    border: 2px solid #CCCCCC;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+
+     .top_nav {
+      width: 100%;
+      height: 60px;
+      border-bottom: 1px solid #ebeaea;
+      position: relative;
+      cursor: move;
+       span {
+         color: #3A8DEE;
+         display: block;
+         position: absolute;
+         left: 40px;
+         font-size: 18px;
+         line-height: 60px;
+         font-weight: 200;
+         letter-spacing: 5px;
+            }
+       a.close {
+         background: url(../../images/index/popup_guanbi.png) repeat 0px 0px;
+         width: 35px;
+         height: 35px;
+         display: block;
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         cursor: pointer;
+               }
+       a.close:hover {
+         background: url(../../images/index/popup_guanbi.png) repeat 0px -35px;
+                      }
+        }
+    .login-err-box {
+      height: 20px;
+      color: red;
+      font-size: 14px;
+      line-height: 14px;
+      width:300px;
+      margin: 10px auto 5px auto;
+                  }
+    .login-input {
+      height: 45px;
+      margin: 10px auto 20px auto;
+      width: 300px;
+      .login-form-control  {
+        height: 45px;
+                            }
+             }
+
+    .automaticlogin-checkbox {
+      margin: 20px auto 10px auto;
+      font-size: 16px;
+      line-height: 16px;
+      width: 300px;
+       span {
+        margin-left: 10px;
+                }
+    }
+    .login-button-box {
+      margin: 10px auto 20px auto;
+      height: 45px;
+      width: 300px;
+      display:block;
+      .login-button {
+        width: 100%;
+        height: 100%;
+        background-color: #3D4751;
+        color: #FFFFFF;
+        font-size: 16px;
+      }
+    }
+    .forget-password-reg {
+      color: #3A8DEE;
+      height: 30px;
+      margin: 10px 0 20px 0;
+
+      .forget-password {
+        position: relative;
+        left: 200px;
+        cursor: pointer
+      }
+
+      .forget-password:hover {
+        color: #3D4751;
+        text-decoration: underline;
+      }
+
+      .login-reg {
+        position: relative;
+        left: 260px;
+        cursor: pointer
+      }
+
+      .login-reg:hover {
+        color: #3D4751;
+        text-decoration: underline;
+      }
+    }
+
+  }
+}
+.gray {
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  opacity: 0.15
+}
+
+.pasword-header-container{
+  height: 80px;
+  width: 100%;
+  background-color: #2f3234;
+  border-bottom: solid 1px #3D4751;
+}
+.forgetpw-big-box{
+  width: 100%;
+  background-color: #FFFFFF;
+  .forgetpw-box{
+    width:400px;
+    height:auto;
+    margin: 0 auto 0 auto;
+    padding-top: 80px;
+    .forgetpw-form{
+      width: 100%;
+      .forgetpwtext{
+        display: block;
+        height: 30px;
+        font-size:18px;
+        margin-bottom:0px;
+        color:#00b3ee;
+      }
+      .forgetpwintro{
+        margin-bottom: 30px;
+        display: block;
+        color: #9da0a4;
+
+      }
+      .forgetInputEmail1{
+        height: 40px;
+        width:400px;
+      }
+     .forgetpwbutton-group{
+       display: block;
+       margin: 0 auto;
+       width:150px;
+       height: 35px;
+       .forgetpwbutton{
+         width:150px;
+         background-color:#0b97c4;
+         font-weight: 400;
+         font-size: 16px;
+         color:#FFFFFF;
+
+       }
+     }
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

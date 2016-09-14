@@ -1,0 +1,99 @@
+
+.solution-body-menu {
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  bottom: 0px;
+  width: 90px;
+  background-color: #3D4751;
+}
+
+.solution-menu-list {
+  a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+  }
+  .menu-item {
+    line-height: 65px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    color: #CCCCCC;
+    cursor: pointer;
+    position: relative;
+
+    .icon-box {
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      top: 22px;
+      left: 10px;
+    }
+
+    .icon-solution {
+      background-image: url('../../images/common/normal/solution_20.png');
+    }
+    .icon-data {
+      background-image: url('../../images/common/normal/data_20.png');
+    }
+    .icon-share {
+      background-image: url('../../images/common/normal/share_20.png');
+    }
+    .icon-help {
+      background-image: url('../../images/common/normal/help_20.png');
+    }
+    .menu-tip {
+      margin-left: 24px;
+    }
+    .menu-text {
+      margin-left: 6px;
+    }
+  }
+
+  .menu-item:hover {
+    color: #FFFFFF;
+    .icon-solution {
+      background-image: url('../../images/common/press/solution_20.png');
+    }
+    .icon-data {
+      background-image: url('../../images/common/press/data_20.png');
+    }
+    .icon-share {
+      background-image: url('../../images/common/press/share_20.png');
+    }
+    .icon-help {
+      background-image: url('../../images/common/press/help_20.png');
+    }
+  }
+
+  .selected {
+    color: #FFFFFF;
+    background-color: #5d656d;
+
+    .icon-solution {
+      background-image: url('../../images/common/press/solution_20.png');
+    }
+    .icon-data {
+      background-image: url('../../images/common/press/data_20.png');
+    }
+    .icon-share {
+      background-image: url('../../images/common/press/share_20.png');
+    }
+    .icon-help {
+      background-image: url('../../images/common/press/help_20.png');
+    }
+  }
+}
+
+.solution-body-box {
+  position: absolute;
+  top: 80px;
+  left: 90px;
+  bottom: 0px;
+  right: 0px;
+  background-color: #dfdfdf;
+  overflow-y: auto;
+}

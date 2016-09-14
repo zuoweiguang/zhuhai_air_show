@@ -1,0 +1,58 @@
+.operate-warehouse-box {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 100%;
+  padding:0 10px;
+}
+
+.operate-warehouse-header {
+  border-bottom: 2px solid #4cae4c;
+  padding: 5px 0px;
+  .header-name {
+    font-size: 15px;
+    padding-top: 5px;
+  }
+}
+
+.operate-warehouse-content {
+  background-color: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  padding: 15px 0;
+  .item-container {
+    .item-header {
+      width: 20%;
+      float: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-right: 5px;
+    }
+    .item-body {
+      width: 80%;
+      float: left;
+      .item-checkbox {
+        width: 25%;
+        float: left;
+        .checkbox {
+          width: 100%;
+          padding-right: 5px;
+          margin-bottom: 0px;
+          margin-top: 0px;
+        }
+        .checkbox > label {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 12px;
+          line-height: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}

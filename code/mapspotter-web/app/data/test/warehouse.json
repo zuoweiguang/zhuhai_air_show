@@ -1,0 +1,144 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": [
+    {
+      "id": "1",
+      "header": "个人数据",
+      "items": [
+        {
+          "name": "点",
+          "sname": "点",
+          "value": "001",
+          "checked": true
+        },
+        {
+          "name": "线",
+          "sname": "线",
+          "value": "002",
+          "checked": true
+        },
+        {
+          "name": "面",
+          "sname": "面",
+          "value": "003",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "header": "索引数据",
+      "items": [
+        {
+          "name": "POI",
+          "sname": "POI",
+          "value": "004",
+          "checked": true
+        },
+        {
+          "name": "点门牌",
+          "sname": "点门牌",
+          "value": "005",
+          "checked": true
+        },
+        {
+          "name": "收费站",
+          "sname": "收费站",
+          "value": "006",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "header": "道路数据",
+      "items": [
+        {
+          "name": "路网",
+          "sname": "路网",
+          "value": "007",
+          "checked": true
+        },
+        {
+          "name": "限速",
+          "sname": "限速",
+          "value": "008",
+          "checked": true
+        },
+        {
+          "name": "电子眼",
+          "sname": "电子眼",
+          "value": "009",
+          "checked": true
+        },
+        {
+          "name": "交限",
+          "sname": "交限",
+          "value": "0010",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "header": "行政区划数据",
+      "items": [
+        {
+          "name": "路网",
+          "sname": "路网",
+          "value": "011",
+          "checked": true
+        },
+        {
+          "name": "限速",
+          "sname": "限速",
+          "value": "012",
+          "checked": true
+        },
+        {
+          "name": "电子眼",
+          "sname": "电子眼",
+          "value": "013",
+          "checked": true
+        },
+        {
+          "name": "交限",
+          "sname": "交限",
+          "value": "014",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "header": "特别长的一个名字怎么处理",
+      "items": [
+        {
+          "name": "我是特别长的内容",
+          "sname": "路网",
+          "value": "015",
+          "checked": true
+        },
+        {
+          "name": "限速",
+          "sname": "限速",
+          "value": "016",
+          "checked": true
+        },
+        {
+          "name": "我也是特别长的内容哈哈哈",
+          "sname": "电子眼",
+          "value": "017",
+          "checked": true
+        },
+        {
+          "name": "交限",
+          "sname": "交限",
+          "value": "018",
+          "checked": true
+        }
+      ]
+    }
+  ]
+}

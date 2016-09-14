@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="zhuhai:war exploded">
+    <output-path>$PROJECT_DIR$/target/dataserver</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="rest" />
+          <element id="file-copy" path="$PROJECT_DIR$/db.properties" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.json:json:20160810" />
+          <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:3.2.2" />
+          <element id="dir-copy" path="$PROJECT_DIR$/lib" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/dataserver/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="rest/web/Web" />
+    </root>
+  </artifact>
+</component>

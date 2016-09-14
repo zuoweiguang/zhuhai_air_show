@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<POIKind>
+    <Kind maincode="11" mainname="餐饮"/>
+    <Kind maincode="12" mainname="住、宿"/>
+    <Kind maincode="13" mainname="批发、零售"/>
+    <Kind maincode="14" mainname="汽车销售及服务"/>
+    <Kind maincode="15" mainname="金融、保险"/>
+    <Kind maincode="16" mainname="教育、文化"/>
+    <Kind maincode="17" mainname="卫生、社保"/>
+    <Kind maincode="18" mainname="运动、休闲"/>
+    <Kind maincode="19" mainname="政府、团体"/>
+    <Kind maincode="20" mainname="商业设施、商务服务"/>
+    <Kind maincode="21" mainname="居民服务"/>
+    <Kind maincode="22" mainname="公司企业"/>
+    <Kind maincode="23" mainname="交通运输、仓储"/>
+    <Kind maincode="24" mainname="科研及技术服务"/>
+    <Kind maincode="25" mainname="农、林、牧、渔业"/>
+    <Kind maincode="26" mainname="自然地物\地名"/>
+</POIKind>

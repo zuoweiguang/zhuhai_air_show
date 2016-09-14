@@ -1,0 +1,62 @@
+package com.navinfo.mapspotter.process.loader.kafka.mongo;
+
+import com.navinfo.mapspotter.foundation.util.Logger;
+import org.bson.Document;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+/**
+ * Class that creates a new DatabaseReader thread for every db
+ */
+public class MongodbReader {
+    private static final Logger log = Logger.getLogger(MongodbReader.class);
+
+    protected ConcurrentLinkedQueue<Document> messages;
+
+    private List<String> dbs;
+    private String host;
+    private Integer port;
+    private Map<Map<String, String>, Map<String, Object>> start;
+
+    public MongodbReader(String host, Integer port, List<String> dbs, Map<Map<String, String>, Map<String, Object>> start) {
+        this.host = host;
+        this.port = port;
+
+        this.dbs = new ArrayList<>(0);
+        this.dbs.addAll(dbs);
+
+        this.start = start;
+        this.messages = new ConcurrentLinkedQueue<>();
+    }
+
+    public void run() {
+
+        //open one thread for each database
+        for (String db : dbs) {
+
+            String start;
+            // get the last message that was read
+            Map<String, Object> dbOffset = this.start.get(Collections.singletonMap("mongodb", db));
+
+            if (dbOffset == null || dbOffset.isEmpty())
+                start = "0";
+            else
+                start = (String) this.start.get(Collections.singletonMap("mongodb", db)).get(db);
+
+            log.trace("Starting database reader with configuration: ");
+            log.trace(String.format("host: %s", host));
+            log.trace(String.format("port: %s", port));
+            log.trace(String.format("db: %s", db));
+            log.trace(String.format("start: %s", start));
+
+            // start a new thread for reading mutation of the specific database
+            DatabaseReader reader = new DatabaseReader(host, port, db, start, messages);
+
+            new Thread(reader).start();
+        }
+    }
+}

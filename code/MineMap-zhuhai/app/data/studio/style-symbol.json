@@ -1,0 +1,13 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": {
+    "name": "symbol",
+    "layout": {
+      "icon-image":"marker-15"
+    },
+    "paint": {
+      "icon-color": "#ff0000"
+    }
+  }
+}

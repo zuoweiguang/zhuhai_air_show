@@ -1,0 +1,65 @@
+.studio-page-header-container {
+  border-radius: 0px;
+  margin-bottom: 0px;
+  border-width: 0px;
+  background-color: #3D4751;
+  height: 80px;
+  width: 100%;
+}
+
+.studio-navbar-header{
+  text-align: center;
+  vertical-align:middle;
+  line-height: 80px;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 32px;
+  color: #FFFFFF;
+  position: relative;
+
+  .back-box {
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:90px;
+    height:80px;
+    padding: 0;
+    margin: 0;
+    color: #CCCCCC;
+    .icon-back {
+      background-image: url('../../images/common/normal/back.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top: 25px;
+      left: 30px;
+    }
+  }
+
+  .back-box:hover{
+    color: #FFFFFF;
+    cursor: pointer;
+    background-color: #3D4751;
+    .icon-back {
+      background-image: url('../../images/common/press/back.png');
+    }
+  }
+
+  .content-box{
+    position: absolute;
+    top:0px;
+    bottom:0px;
+    left:100px;
+    right:0px;
+    padding: 0;
+    margin: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+
+    .content-info{
+
+    }
+  }
+}

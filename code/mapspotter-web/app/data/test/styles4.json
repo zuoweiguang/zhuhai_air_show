@@ -1,0 +1,422 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": [
+    {
+      "id": "background",
+      "type": "background",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "background-color": "#09243C"
+      },
+      "interactive": false
+    },
+    {
+      "id": "satellite",
+      "type": "raster",
+      "source": "sat",
+      "source-layer": "mapbox_satellite_full",
+      "layout": {
+        "visibility": "visible"
+      }
+    },
+    {
+      "id": "region_link",
+      "type": "line",
+      "source": "admin",
+      "source-layer": "AdminBoundary",
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "filter": [
+        "in",
+        "kind",
+        1,
+        2
+      ],
+      "paint": {
+        "line-color": "#9AC0CD",
+        "line-width": {
+          "base": 0.6,
+          "stops": [
+            [
+              5,
+              0.6
+            ],
+            [
+              6,
+              0.8
+            ],
+            [
+              7,
+              1.9
+            ],
+            [
+              20,
+              4
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "lu",
+      "type": "fill",
+      "source": "background",
+      "source-layer": "LU",
+      "layout": {
+        "visibility": "none"
+      },
+      "paint": {
+        "fill-color": "#7EC0EE"
+      }
+    },
+    {
+      "id": "lc",
+      "type": "fill",
+      "source": "background",
+      "source-layer": "LC",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-color": "#071725"
+      }
+    },
+    {
+      "type": "fill",
+      "source": "background",
+      "id": "cityModel2d",
+      "layout": {
+        "visibility": "none"
+      },
+      "paint": {
+        "fill-color": "#7D9EC0"
+      },
+      "source-layer": "CityModel",
+      "interactive": true
+    },
+    {
+      "type": "extrusion",
+      "source": "background",
+      "id": "cityModel3d",
+      "minzoom": 13,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "extrusion-color": "#D9D9D9",
+        "extrusion-antialias": true,
+        "extrusion-lighting-anchor": "viewport",
+        "extrusion-outline-color": "#909",
+        "extrusion-opacity": 1,
+        "extrusion-shadow-color": "#00f"
+      },
+      "source-layer": "CityModel",
+      "interactive": true
+    },
+    {
+      "interactive": true,
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "mapbox:group": "1444849345966.4436"
+      },
+      "type": "line",
+      "source": "road",
+      "id": "railway",
+      "paint": {
+        "line-color": "#777",
+        "line-width": {
+          "base": 1.2,
+          "stops": [
+            [
+              5,
+              0.6
+            ],
+            [
+              6,
+              0.8
+            ],
+            [
+              7,
+              1.9
+            ],
+            [
+              20,
+              17
+            ]
+          ]
+        }
+      },
+      "source-layer": "RailWay"
+    },
+    {
+      "interactive": true,
+      "layout": {
+        "line-cap": "square",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "mapbox:group": "1444849345966.4436"
+      },
+      "type": "line",
+      "source": "road",
+      "id": "railway2",
+      "paint": {
+        "line-color": "#fff",
+        "line-width": {
+          "base": 1.2,
+          "stops": [
+            [
+              5,
+              0.3
+            ],
+            [
+              6,
+              0.5
+            ],
+            [
+              7,
+              1.3
+            ],
+            [
+              20,
+              10
+            ]
+          ]
+        },
+        "line-dasharray": [
+          6,
+          6
+        ]
+      },
+      "source-layer": "RailWay"
+    },
+    {
+      "interactive": true,
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "mapbox:group": "1444849345966.4436"
+      },
+      "type": "line",
+      "source": "road",
+      "id": "road",
+      "paint": {
+        "line-color": "#0F6680",
+        "line-width": {
+          "base": 1.2,
+          "stops": [
+            [
+              5,
+              0.6
+            ],
+            [
+              6,
+              0.8
+            ],
+            [
+              7,
+              1.9
+            ],
+            [
+              20,
+              10
+            ]
+          ]
+        }
+      },
+      "source-layer": "Road"
+    },
+    {
+      "id": "road2",
+      "interactive": true,
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "mapbox:group": "1444849345966.4436"
+      },
+      "type": "line",
+      "source": "road",
+      "paint": {
+        "line-color": "#CFCFCF",
+        "line-width": {
+          "base": 1.2,
+          "stops": [
+            [
+              13.5,
+              0
+            ],
+            [
+              14,
+              2.5
+            ],
+            [
+              20,
+              11.5
+            ]
+          ]
+        }
+      },
+      "source-layer": "Road"
+    },
+    {
+      "interactive": true,
+      "layout": {
+        "text-field": "{name}",
+        "text-font": [
+          "Open Sans Regular",
+          "Arial Unicode MS Regular"
+        ],
+        "text-size": {
+          "base": 1,
+          "stops": [
+            [
+              13,
+              12
+            ],
+            [
+              14,
+              13
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "visibility": "none"
+      },
+      "metadata": {
+        "mapbox:group": "1456163609504.0715"
+      },
+      "type": "symbol",
+      "source": "road",
+      "id": "road_label",
+      "paint": {
+        "text-halo-width": 1.0,
+        "text-halo-blur": 0.3,
+        "text-color": "#8C8C8C"
+      },
+      "source-layer": "Road"
+    },
+    {
+      "id": "poi_pt",
+      "type": "symbol",
+      "source": "poi",
+      "source-layer": "Poi",
+      "layout": {
+        "visibility": "none",
+        "icon-image":"marker-15"
+      },
+      "paint": {
+        "icon-color": "#ffff00"
+      }
+    },
+    {
+      "id": "construction",
+      "type": "line",
+      "source": "miningResult",
+      "source-layer": "Construction",
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "none"
+      },
+      "paint": {
+        "line-color": "#ff0000",
+        "line-width": {
+          "base": 1.2,
+          "stops": [
+            [
+              5,
+              0.1
+            ],
+            [
+              6,
+              0.2
+            ],
+            [
+              7,
+              1.5
+            ],
+            [
+              20,
+              18
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "missingroad",
+      "type": "line",
+      "source": "miningResult",
+      "source-layer": "Missingroad",
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "none"
+      },
+      "paint": {
+        "line-color": "#ff0000",
+        "line-width": {
+          "base": 1.2,
+          "stops": [
+            [
+              5,
+              0.1
+            ],
+            [
+              6,
+              0.2
+            ],
+            [
+              7,
+              1.5
+            ],
+            [
+              20,
+              18
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "restricDetail",
+      "type": "symbol",
+      "source": "miningResult",
+      "source-layer": "RestricDetail",
+      "layout": {
+        "visibility": "none",
+        "icon-image":"triangle-15"
+      },
+      "paint": {
+        "icon-color": "#ffe200"
+      }
+    },
+    {
+      "id": "originaltrail",
+      "type": "raster",
+      "source": "originaltrail",
+      "minzoom": 7,
+      "maxzoom": 16,
+      "layout": {
+        "visibility": "none"
+      }
+    }
+  ]
+}

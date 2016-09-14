@@ -1,0 +1,54 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1024px;
+    background: none repeat scroll 0 0 #dfdfdf;
+    font-family: "PingFangSC-Medium", "PingFang SC Medium", "PingFang SC", "Microsoft YaHei", "微软雅黑", Arial, sans-serif,"黑体";
+    -moz-user-select: none;
+}
+
+/************************************************************************************************************
+*顶部导航栏                                                                                                 *
+************************************************************************************************************/
+.page-header-container {
+    border-radius: 0px;
+    margin-bottom: 0px;
+    border-width: 0px;
+    background-color: #3D4751;
+    border-bottom: solid 1px #3D4751;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    width: 100%;
+}
+
+/************************************************************************************************************
+*body                                                                                               *
+************************************************************************************************************/
+
+.page-body-container {
+    min-width: 1024px;
+    min-height: 600px;
+    height:auto;
+    background-color: #dfdfdf;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 100;
+}

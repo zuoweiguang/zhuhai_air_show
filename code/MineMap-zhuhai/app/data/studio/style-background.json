@@ -1,0 +1,12 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": {
+    "name": "background",
+    "layout": {
+    },
+    "paint": {
+      "background-color": "#9DD64F"
+    }
+  }
+}

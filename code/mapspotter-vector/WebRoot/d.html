@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src='webgl-2d.js'></script>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+</style>
+</head>
+<body>
+<div id='map'>
+<canvas id="canvasGL" style="border: 1px solid black;"></canvas>
+</div>
+<script type="text/javascript">
+        var cvsGL = document.getElementById("canvasGL");
+        
+        cvsGL.width = window.innerWidth;
+        cvsGL.height = window.innerHeight;
+
+        var width = cvsGL.width, height = cvsGL.height;
+
+        WebGL2D.enable(cvsGL); // adds new context "webgl-2d" to cvs
+ 
+        ctxGL = cvsGL.getContext("webgl-2d");
+
+        draw(ctxGL);
+       // draw2(ctxGL);
+        
+      function draw(ctx) {
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(255, 250, 255, 0.5)";
+        ctx.fillStyle = "rgb(50, 50, 50)";
+        ctx.fillRect(0, 0, width, height);
+        ctx.translate(width/2, height/2);
+        ctx.save();
+            ctx.strokeStyle = "rgb(150, 255, 255)";
+            for (var i = 0; i < 250; i++) {
+              ctx.scale(2,2);
+              ctx.strokeRect(0, 0, 50, 50);
+              ctx.scale(.5, .5);
+              ctx.rotate(-2*Math.PI/50);
+            }
+          ctx.restore();
+        ctx.translate(-150, -150);
+        ctx.strokeRect(0, 0, 300, 300);
+        ctx.restore();
+      }
+      
+      function draw2(ctx) {
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(0, 50, 255, 0.5)";
+        ctx.fillStyle = "rgb(0, 0, 50)";
+        ctx.fillRect(0, 0, width, height);
+        ctx.translate(width/2, height/2);
+        ctx.save();
+          ctx.save();
+            ctx.strokeStyle = "rgb(50, 255, 255)";
+            for (var i = 0; i < 50; i++) {
+              ctx.scale(2,2);
+              ctx.strokeRect(0, 0, 50, 50);
+              ctx.scale(.5, .5);
+              ctx.rotate(-2*Math.PI/50);
+            }
+          ctx.restore();
+        ctx.translate(-150, -150);
+        ctx.strokeRect(0, 0, 300, 300);
+        ctx.restore();
+      }
+</script>
+</body>
+</html>

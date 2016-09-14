@@ -1,0 +1,8 @@
+{
+  "errcode":0,
+  "errmsg":"success",
+  "data":{
+    "id":"layer1",
+    "name":"POI"
+  }
+}

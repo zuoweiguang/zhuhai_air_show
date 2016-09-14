@@ -1,0 +1,107 @@
+{
+  "data": [
+    {
+      "source-layers" : [
+        {
+          "id" : "Road",
+          "name" : "道路层",
+          "type" : "line"
+        },
+        {
+          "id" : "RailWay",
+          "name" : "铁路层",
+          "type" : "line"
+        }
+      ],
+      "id" : "1a2b3130-860d-4a02-8276-821a478d7d38",
+      "userID" : "",
+      "maxzoom" : 17,
+      "desc" : "道路",
+      "tiles" : [
+        "http://192.168.4.218:8080/mapspotter/view/road/{z}/{x}/{y}"
+      ],
+      "source" : "road",
+      "minzoom" : 3,
+      "type" : "vector",
+      "editable" : false
+    },
+    {
+      "source-layers" : [
+        {
+          "id" : "LC",
+          "name" : "土地覆盖层",
+          "type" : "fill"
+        },
+        {
+          "id" : "LU",
+          "name" : "土地利用层",
+          "type" : "fill"
+        },
+        {
+          "id" : "CityModel",
+          "name" : "市街图层",
+          "type" : "fill"
+        }
+      ],
+      "id" : "f34eeaf9-2bb9-4e40-9614-0ae831e5d099",
+      "userID" : "",
+      "maxzoom" : 17,
+      "desc" : "背景",
+      "tiles" : [
+        "http://192.168.4.218:8080/mapspotter/view/background/{z}/{x}/{y}"
+      ],
+      "source" : "background",
+      "minzoom" : 3,
+      "type" : "vector",
+      "editable" : false
+    },
+    {
+      "source-layers" : [
+        {
+          "id" : "Admin",
+          "name" : "行政区划面层",
+          "type" : "fill"
+        },
+        {
+          "id" : "AdminBoundary",
+          "name" : "行政区划边界线层",
+          "type" : "line"
+        }
+      ],
+      "id" : "5f374a42-96d1-4b45-84b0-017b22ac46f9",
+      "userID" : "",
+      "maxzoom" : 17,
+      "desc" : "行政区划",
+      "tiles" : [
+        "http://192.168.4.218:8080/mapspotter/view/admin/{z}/{x}/{y}"
+      ],
+      "source" : "admin",
+      "minzoom" : 3,
+      "type" : "vector",
+      "editable" : false
+    }
+  ,
+    {
+      "source-layers" : [
+        {
+          "id" : "Poi",
+          "name" : "POI层",
+          "type" : "circle"
+        }
+      ],
+      "id" : "cf263d84-32b8-49de-b5bb-8cad907f8ee5",
+      "userID" : "",
+      "maxzoom" : 17,
+      "desc" : "兴趣点",
+      "tiles" : [
+        "http://192.168.4.218:8080/mapspotter/view/poi/{z}/{x}/{y}"
+      ],
+      "source" : "poi",
+      "minzoom" : 3,
+      "type" : "vector",
+      "editable" : false
+    }
+  ],
+  "errmsg": "",
+  "errcode": 0
+}

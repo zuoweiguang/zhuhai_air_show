@@ -1,0 +1,12 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": {
+    "name": "fill",
+    "layout": {
+    },
+    "paint": {
+      "fill-color": "#9ED9DA"
+    }
+  }
+}

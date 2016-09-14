@@ -1,0 +1,45 @@
+.operate-help-box-container {
+  width: 400px;
+  box-sizing: border-box;
+  .operate-help-header {
+    background-color: #465059; /*#e8e8e8;*/
+    height: 46px;
+    color: #CCCCCC;
+    font-size: 16px;
+    font-weight: bold;
+    .title {
+      margin: 0 auto;
+      text-align: center;
+      height: 46px;
+      line-height: 46px;
+    }
+  }
+  .operate-help-content-body {
+    width: 400px;
+    box-sizing: border-box;
+    padding: 15px;
+    color: #333333;
+    .fs16 {
+      font-size: 14px;
+      height: 40px;
+      line-height: 40px;
+      color: #808080;
+    }
+    .content-main {
+      font-size: 14px;
+      height: 28px;
+      line-height: 28px;
+    }
+    .content-sub {
+      line-height: 20px;
+      font-size: 12px;
+      margin: 10px 15px;
+    }
+    .sub-img {
+      width: 166px;
+    }
+    .sm-img {
+      width: 24px;
+    }
+  }
+}

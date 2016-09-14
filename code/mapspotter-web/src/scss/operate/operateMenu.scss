@@ -1,0 +1,105 @@
+.operate-menu-box {
+
+}
+
+.operate-menu-list {
+  a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+  }
+  .menu-main {
+    font-size: 16px;
+    color: #CCCCCC;
+    background-color: #3D4751;
+    height: 80px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    .menu-content {
+      text-align: center;
+      line-height: 24px;
+      vertical-align: middle;
+      position: relative;
+
+      .icon-back {
+        background-image: url('../../images/common/normal/main.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 24px;
+        width: 24px;
+        position: absolute;
+        top: 11px;
+        left: 18px;
+      }
+    }
+  }
+  .menu-main:hover {
+    background-color: #3D4751;
+    cursor: pointer;
+    .menu-content {
+      .icon-back{
+        background-image: url('../../images/common/press/main.png');
+      }
+    }
+  }
+  .menu-item {
+    font-size: 16px;
+    color: #CCCCCC;
+    background-color: #3D4751;
+    height: 80px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    .menu-content {
+      text-align: center;
+      line-height: 24px;
+      vertical-align: middle;
+      position: relative;
+
+      .icon-box {
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        top: 2px;
+        left: 20px;
+      }
+
+      .icon-solution {
+        background-image: url('../../images/common/normal/solution_20.png');
+      }
+
+      .icon-help {
+        background-image: url('../../images/common/normal/help_20.png');
+      }
+    }
+  }
+  .menu-item:hover {
+    color: #fff;
+    cursor: pointer;
+
+    .menu-content {
+      .icon-solution {
+        background-image: url('../../images/common/press/solution_20.png');
+      }
+
+      .icon-help {
+        background-image: url('../../images/common/press/help_20.png');
+      }
+    }
+  }
+
+  .selected {
+    color: #fff;
+    background-color: #5d656d;
+
+    .menu-content {
+      .icon-solution {
+        background-image: url('../../images/common/press/solution_20.png');
+      }
+
+      .icon-help {
+        background-image: url('../../images/common/press/help_20.png');
+      }
+    }
+  }
+
+}

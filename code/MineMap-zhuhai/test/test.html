@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="content-type" content="no-cache, must-revalidate"/>
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
+    <title>MapSpotter</title>
+    <link href="../app/images/common/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="../app/lib/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src='../app/lib/mapbox-gl/v0.18.0/mapbox-gl-dev-new.js'></script>
+    <link href="../app/lib/mapbox-gl/v0.18.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id='map'></div>
+
+<script>
+    var simple = {
+        "version": 8,
+        "name": "Bright",
+        "sprite": "../app/sprite",
+        "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+        "sources": {
+            "satellite": {
+                "type": "raster",
+                "url": "../app/satellite.json",
+                "tileSize": 256
+            },
+            "originaltrail": {
+                "type": "raster",
+                "tileSize": 256,
+                "tiles": ["http://119.29.86.160:8080/heatmap/show?source=sogou_0523_0605&x={x}&y={y}&z={z}"]
+            },
+            "miningResult": {
+                "type": "vector",
+                "tiles": ["http://192.168.4.218:8080/mapspotter/view/ms/{z}/{x}/{y}"]
+            },
+            "infomation": {
+                "type": "vector",
+                "tiles": ["http://192.168.4.218:8080/mapspotter/view/infomation/{z}/{x}/{y}"]
+            }
+        },
+        "layers": [{
+            "id": "background",
+            "type": "background",
+            "paint": {
+                "background-color": "#12abcd"
+            },
+            "interactive": true
+        }, {
+            "id": "satellite",
+            "type": "raster",
+            "source": "satellite",
+            "source-layer": "mapbox_satellite_full",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {},
+            "minzoom": 3,
+            "maxzoom": 18,
+            "interactive": true
+        }, {
+            "id": "originaltrail",
+            "type": "raster",
+            "source": "originaltrail",
+            "source-layer": "SogouOriginaltrail",
+            "minzoom": 7,
+            "maxzoom": 16,
+            "layout": {
+                "visibility": "none"
+            }
+        }, {
+            "id": "construction",
+            "type": "line",
+            "source": "miningResult",
+            "source-layer": "Construction",
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": {
+                    "base": 1.2,
+                    "stops": [
+                        [
+                            0,
+                            "#ffff00"
+                        ],
+                        [
+                            17,
+                            "#ff0000"
+                        ]
+                    ]
+                },
+                "line-width": {
+                    "base": 1.2,
+                    "stops": [
+                        [
+                            5,
+                            0.1
+                        ],
+                        [
+                            6,
+                            0.2
+                        ],
+                        [
+                            7,
+                            1.5
+                        ],
+                        [
+                            20,
+                            18
+                        ]
+                    ]
+                },
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            10,
+                            0
+                        ],
+                        [
+                            11,
+                            1
+                        ]
+                    ]
+                }
+            }
+        },
+            {
+                "id": "missingroad",
+                "type": "line",
+                "source": "miningResult",
+                "source-layer": "Missingroad",
+                "layout": {
+                    "line-cap": "round",
+                    "line-join": "round",
+                    "visibility": "visible"
+                },
+                "paint": {
+                    "line-color": {
+                        "base": 1.2,
+                        "stops": [
+                            [
+                                0,
+                                "#ffff00"
+                            ],
+                            [
+                                17,
+                                "#ff0000"
+                            ]
+                        ]
+                    },
+                    "line-width": {
+                        "base": 1.2,
+                        "stops": [
+                            [
+                                5,
+                                0.1
+                            ],
+                            [
+                                6,
+                                0.2
+                            ],
+                            [
+                                7,
+                                1.5
+                            ],
+                            [
+                                20,
+                                18
+                            ]
+                        ]
+                    },
+                    "line-opacity": {
+                        "base": 1,
+                        "stops": [
+                            [
+                                10,
+                                0
+                            ],
+                            [
+                                11,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "id": "restricDetail",
+                "type": "symbol",
+                "source": "miningResult",
+                "source-layer": "RestricDetail",
+                "layout": {
+                    "visibility": "visible",
+                    "icon-image": "triangle-15"
+                }
+                ,
+                "paint": {
+                    "icon-color": {
+                        "base": 1.2,
+                        "stops": [
+                            [
+                                0,
+                                "#ffff00"
+                            ],
+                            [
+                                17,
+                                "#ff0000"
+                            ]
+                        ]
+                    }
+                }
+            }
+            ,
+            {
+                "interactive": true,
+                "layout": {
+                    "line-cap": "round",
+                    "line-join": "round"
+                }
+                ,
+                "type": "line",
+                "source": "infomation",
+                "id": "InfoRoad",
+                "paint": {
+                    "line-color": {
+                        "base": 1.2,
+                        "stops": [
+                            [
+                                0,
+                                "#ffff00"
+                            ],
+                            [
+                                17,
+                                "#ff0000"
+                            ]
+                        ]
+                    }
+                    ,
+                    "line-width": {
+                        "base": 1.2,
+                        "stops": [[5, 0.6], [6, 0.8], [7, 1.9], [20, 17]]
+                    }
+                    ,
+                    "line-opacity": {
+                        "base": 1,
+                        "stops": [
+                            [
+                                10,
+                                0
+                            ],
+                            [
+                                11,
+                                1
+                            ]
+                        ]
+                    }
+                }
+                ,
+                "source-layer": "InfoRoad"
+            }
+            ,
+            {
+                "interactive": true,
+                "type": "circle",
+                "source": "infomation",
+                "id": "InfoPoi",
+                "paint": {
+                    "circle-radius": 8,
+                    "circle-color": {
+                        "base": 1.2,
+                        "stops": [
+                            [
+                                0,
+                                "#ffff00"
+                            ],
+                            [
+                                17,
+                                "#ff0000"
+                            ]
+                        ]
+                    },
+                    "circle-opacity": 0.8
+                }
+                ,
+                "source-layer": "InfoPoi"
+            }
+        ]
+    }
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZmFuZ2xhbmsiLCJhIjoiY2lpcjc1YzQxMDA5NHZra3NpaDAyODB4eSJ9.z6uZHccXvtyVqA5zmalfGg'
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: simple,
+        zoom: 14,
+        center: [116.46, 39.92],
+        maxZoom: 22,
+        minZoom: 5
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "fields":["pid",
+            "kindcode",
+            "form_name",
+            "address",
+            "x",
+            "y",
+            "collect",
+            "day_edit",
+            "month_edit",
+            "loc",
+            "contact"]
+}

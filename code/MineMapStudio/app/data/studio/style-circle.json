@@ -1,0 +1,14 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": {
+    "name": "circle",
+    "layout": {
+    },
+    "paint": {
+      "circle-radius": 8,
+      "circle-color": "#ff0000",
+      "circle-opacity": 0.8
+    }
+  }
+}

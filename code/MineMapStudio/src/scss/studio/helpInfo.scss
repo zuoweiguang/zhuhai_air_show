@@ -1,0 +1,65 @@
+.helpinfo-box {
+  position: relative;
+  width: 100%;
+  margin: 0px;
+  padding: 10% 0;
+
+  .content-center {
+    padding-top: 20%;
+  }
+
+  .content-containter {
+    margin-top: 15px;
+    margin: 0px;
+    padding: 8% 0 0 0;
+    height: 72px;
+    width: 800px;
+    position: relative;
+
+    .content-info-icon {
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 72px;
+      height: 72px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .content-info-tips {
+      background-image: url('../../images/studio/help_tips.png');
+    }
+
+    .content-info-mail {
+      background-image: url('../../images/studio/help_mail.png');
+    }
+
+    .content-info-label {
+      position: absolute;
+      bottom: 0px;
+      left: 90px;
+      height: 64px;
+      top: 8px;;
+
+      .label-title {
+        text-align: left;
+        font-size: 20px;
+        color: #3D4751;
+        margin-bottom: 6px;
+      }
+
+      .label-desc {
+        text-align: left;
+        font-size: 18px;
+        color: #3A8DEE;
+
+        a, a:link, a:visited, a:active, a:hover {
+          text-decoration: underline;
+          color: #3A8DEE;
+        }
+      }
+    }
+
+  }
+}
+

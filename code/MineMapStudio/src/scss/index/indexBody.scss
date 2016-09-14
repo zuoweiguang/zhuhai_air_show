@@ -1,0 +1,42 @@
+.index-body {
+  z-index: 1;
+  position: relative;
+}
+
+.bg-box {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-height: 600px;
+  height: 100%;
+
+  .desc-box {
+    position: absolute;
+    z-index: 3;
+    right: 120px;
+    top: 110px;
+    color: #3d4751;
+    .desc-zh {
+      font-size: 50px;
+    }
+    .desc-en {
+      margin-top: 45px;
+      font-size: 42px;
+    }
+  }
+  .btn-box {
+    position: absolute;
+    top: 360px;
+    right: 120px;
+    z-index: 3;
+    color: #3A8DEE;
+    font-size: 28px;
+    text-decoration: underline;
+    cursor: pointer;
+
+    a:link, a:visited, a:active, a:hover{
+      color: #3A8DEE;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": {
+    "id": "3",
+    "name": "轨迹地图",
+    "desc": "挖掘结果数据展示",
+    "user": "admin",
+    "layers": [
+      {
+        "id": "background",
+        "name": "背景",
+        "desc": "",
+        "type": "background",
+        "visibility": "visible"
+      },
+      {
+        "id": "satellite",
+        "name": "资三影像",
+        "desc": "",
+        "type": "raster",
+        "source": "sat",
+        "source-layer": "mapbox_satellite_full",
+        "visibility": "none"
+      },
+      {
+        "id": "lu",
+        "name": "土地利用",
+        "desc": "",
+        "type": "fill",
+        "source": "background",
+        "source-layer": "LU",
+        "visibility": "none"
+      },
+      {
+        "id": "lc",
+        "name": "土地覆盖",
+        "desc": "",
+        "type": "fill",
+        "source": "background",
+        "source-layer": "LC",
+        "visibility": "visible"
+      },
+      {
+        "id": "originaltrail",
+        "name": "搜狗原始轨迹",
+        "desc": "",
+        "type": "raster",
+        "source": "originaltrail",
+        "visibility": "visible"
+      },
+      {
+        "id": "region_link",
+        "name": "行政区划线",
+        "desc": "",
+        "type": "line",
+        "source": "admin",
+        "source-layer": "AdminBoundary",
+        "visibility": "visible"
+      },
+      {
+        "id": "railway",
+        "name": "铁路",
+        "desc": "",
+        "type": "line",
+        "source": "road",
+        "source-layer": "RailWay",
+        "visibility": "visible"
+      },
+      {
+        "id": "railway2",
+        "name": "铁路2",
+        "desc": "",
+        "type": "line",
+        "source": "road",
+        "source-layer": "RailWay",
+        "visibility": "visible"
+      },
+      {
+        "id": "road2",
+        "name": "道路",
+        "desc": "",
+        "type": "line",
+        "source": "road",
+        "source-layer": "Road",
+        "visibility": "visible"
+      },
+      {
+        "id": "road_label",
+        "name": "道路名",
+        "desc": "",
+        "type": "symbol",
+        "source": "road",
+        "source-layer": "Road",
+        "visibility": "none"
+      },
+      {
+        "id":"poi_pt",
+        "name":"POI",
+        "desc":"",
+        "type": "symbol",
+        "source": "poi",
+        "source-layer": "Poi",
+        "visibility":"none"
+      },
+      {
+        "id":"cityModel2d",
+        "name":"市街图2d",
+        "desc":"",
+        "type": "fill",
+        "source": "background",
+        "source-layer": "CityModel",
+        "visibility":"none"
+      },
+      {
+        "id":"cityModel3d",
+        "name":"市街图3D",
+        "desc":"",
+        "type": "extrusion",
+        "source": "background",
+        "source-layer": "CityModel",
+        "visibility":"none"
+      },
+      {
+        "id":"construction",
+        "name":"施工挖掘",
+        "desc":"",
+        "type": "line",
+        "source": "miningResult",
+        "source-layer": "Construction",
+        "visibility":"none"
+      },{
+        "id":"missingroad",
+        "name":"缺失道路挖掘",
+        "desc":"",
+        "type": "line",
+        "source": "miningResult",
+        "source-layer": "Missingroad",
+        "visibility":"none"
+      },{
+        "id":"restricDetail",
+        "name":"交限挖掘",
+        "desc":"",
+        "type": "symbol",
+        "source": "miningResult",
+        "source-layer": "RestricDetail",
+        "visibility":"none"
+      }
+    ]
+  }
+}

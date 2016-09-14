@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="zhuhai:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/zhuhai_war</output-path>
+    <root id="archive" name="zhuhai.war">
+      <element id="library" level="project" name="aopalliance-repackaged-2.4.0-b34" />
+      <element id="javaee-facet-resources" facet="rest/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="dir-copy" path="$PROJECT_DIR$/lib" />
+        </element>
+        <element id="directory" name="classes">
+          <element id="module-output" name="rest" />
+          <element id="file-copy" path="$PROJECT_DIR$/db.properties" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Infomation>
+    <main>
+        <globalId/>
+        <b_featureKind fromcollector="b_featureKind"></b_featureKind>
+        <b_sourceCode fromcollector="b_sourceCode"/>
+        <b_sourceId />
+        <b_reliability />
+        <g_location/>
+        <g_guide/>
+        <t_storageDate/>
+        <t_expectDate/>
+        <t_expDateReliab/>
+        <t_status/>
+        <i_proposal/>
+        <i_level/>
+        <i_infoName/>
+        <i_infoContent/>
+    </main>
+    <extension>
+        <globalId/>
+        <t_publishDate/>
+        <t_submitDate/>
+        <t_closeDate/>
+        <t_operateDate/>
+        <t_payPoints/>
+        <h_outdoor/>
+        <h_indoor/>
+        <h_audit/>
+        <i_poi/>
+        <i_road/>
+        <i_memo/>
+        <i_confirmMode/>
+        <i_confirmResult/>
+        <i_precision/>
+        <i_serviceStatus/>
+        <r_features/>
+        <f_array/>
+        <c_isAdopted></c_isAdopted>
+        <c_denyReason></c_denyReason>
+        <c_denyRemark></c_denyRemark>
+        <c_userId></c_userId>
+        <c_pid></c_pid>
+        <c_fid></c_fid>
+    </extension>
+    <Download4Collector>
+        <globalId/>
+        <b_featureKind/>
+        <b_sourceCode/>
+        <b_sourceId/>
+        <b_reliability/>
+        <g_location/>
+        <g_guide/>
+        <t_expectDate/>
+        <t_expDateReliab/>
+        <t_publishDate/>
+        <t_operateDate/>
+        <t_payPoints/>
+        <i_poi/>
+        <i_road/>
+        <i_memo/>
+        <i_proposal/>
+        <i_level/>
+        <i_infoName/>
+        <i_infoContent/>
+        <i_confirmMode/>
+        <i_confirmResult/>
+        <i_precision/>
+        <i_serviceStatus/>
+        <r_features/>
+    </Download4Collector>
+</Infomation>

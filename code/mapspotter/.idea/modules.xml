@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/process/analysis/analysis.iml" filepath="$PROJECT_DIR$/process/analysis/analysis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/process/control/control.iml" filepath="$PROJECT_DIR$/process/control/control.iml" />
+      <module fileurl="file://$PROJECT_DIR$/process/convert/convert.iml" filepath="$PROJECT_DIR$/process/convert/convert.iml" />
+      <module fileurl="file://$PROJECT_DIR$/foundation/foundation.iml" filepath="$PROJECT_DIR$/foundation/foundation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/process/loader/loader.iml" filepath="$PROJECT_DIR$/process/loader/loader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapspotter.iml" filepath="$PROJECT_DIR$/mapspotter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/process/storage/storage.iml" filepath="$PROJECT_DIR$/process/storage/storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/process/topic/topic.iml" filepath="$PROJECT_DIR$/process/topic/topic.iml" />
+    </modules>
+  </component>
+</project>

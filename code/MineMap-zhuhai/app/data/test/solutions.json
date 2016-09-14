@@ -1,0 +1,36 @@
+{
+  "errcode": 0,
+  "errmsg": "success",
+  "data": {
+    "solutions": [
+      {
+        "id": "1",
+        "name": "配送点管理",
+        "desc": "1、显示商家位置；2、配送范围区域标注。",
+        "icon": "app/images/studio/solution/1.png",
+        "user": "admin"
+      },
+      {
+        "id": "2",
+        "name": "路网自定义绘制",
+        "desc": "通过自定义绘制工具，对于省道、国道、铁路、高速路等进行颜色区分，方便浏览。",
+        "icon": "app/images/studio/solution/2.png",
+        "user": "admin"
+      },
+      {
+        "id": "3",
+        "name": "轨迹挖掘方案",
+        "desc": "针对现有客户轨迹数据进行深度挖据，例如缺失道路、交通限制等。",
+        "icon": "app/images/studio/solution/3.png",
+        "user": "admin"
+      },
+      {
+        "id": "4",
+        "name": "影像资料验证",
+        "desc": "实时查看最新卫星影像资料，并验证某区域道路覆盖情况。",
+        "icon": "app/images/studio/solution/4.png",
+        "user": "admin"
+      }
+    ]
+  }
+}

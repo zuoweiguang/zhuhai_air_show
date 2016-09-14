@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title></title>
+<meta name='viewport'
+	content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='dist/mapbox-gl-dev.js'></script>
+
+
+<link href='dist/mapbox-gl.css' rel='stylesheet' />
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+#features {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 300px;
+	overflow: auto;
+	background: rgba(255, 255, 255, 0.8);
+}
+</style>
+</head>
+<body>
+
+
+
+	<div id='map'></div>
+	<pre id='features'></pre>
+	<script>
+	
+
+	
+	var simple = {
+	"version" : 8,
+	"name" : "Bright",
+	"sources" : {
+
+		"road" : {
+			"type" : "vector",
+			"tiles" : [
+					"http://172.23.61.147:8080/demo1/road2/{z}/{x}/{y}.pbf"
+					 ]
+					,
+		"maxzoom":12,
+		"minzoom": 12
+
+		},"road2" : {
+			"type" : "vector",
+			"tiles" : [
+					"http://172.23.61.147:8080/demo1/road/{z}/{x}/{y}.pbf" ]
+					
+
+		},
+		"sat" : {
+			"type" : "raster",
+			"url" : "http://172.23.61.147:8080/demo1/sat.json",
+			"tileSize" : 256
+		}
+	},
+	"sprite" : "http://172.23.61.147:8080/demo1/sprite",
+	"layers" : [ {
+		"id" : "background",
+		"type" : "background",
+		"paint" : {
+			"background-color" : "#12abcd"
+		},
+		"interactive" : true
+	},{
+	"id" : "satellite",
+		"type" : "raster",
+		"source" : "sat",
+		"source-layer" : "mapbox_satellite_full",
+		"layout" : {
+			"visibility" : "none"
+		}
+	},{
+		"interactive" : true,
+		"layout" : {
+			"line-cap" : "round",
+			"line-join" : "round"
+		},
+		"metadata" : {
+			"mapbox:group" : "1444849345966.4436"
+		},
+//            "filter":["all", [
+//                "<",
+//               "pid",
+//                3
+//            ],[
+//                ">",
+//                "pid",
+//               1
+//            ]],
+		"type" : "line",
+		"source" : "road2",
+		"id" : "road2",
+		"paint" : {
+			"line-color" : "#00ffff"
+			,
+			"line-width" : {
+				"base" : 1.2,
+				"stops" : [ [ 5, 0.6 ], [ 6, 0.8 ], [ 7, 1.9 ], [ 20, 2 ] ]
+			}
+		},
+		"source-layer" : "road2"
+	},{
+		"interactive" : true,
+		"layout" : {
+			"line-cap" : "round",
+			"line-join" : "round"
+		},
+		"metadata" : {
+			"mapbox:group" : "1444849345966.4436"
+		},
+//            "filter":["all", [
+//                "<",
+//               "pid",
+//                3
+//            ],[
+//                ">",
+//                "pid",
+//               1
+//            ]],
+		"type" : "line",
+		"source" : "road",
+		"id" : "road",
+		"paint" : {
+			"line-color" : "#ffff00"
+			,
+			"line-width" : {
+				"base" : 1.2,
+				"stops" : [ [ 5, 0.6 ], [ 6, 0.8 ], [ 7, 1.9 ], [ 20, 3 ] ]
+			}
+		},
+		"source-layer" : "road"
+	},{
+					"interactive" : true,
+					"layout" : {
+						"text-field" : "{name_cn}",
+						"text-font" : [ "Open Sans Regular",
+								"Arial Unicode MS Regular" ],
+						"text-size" : {
+							"base" : 1,
+							"stops" : [ [ 13, 12 ], [ 14, 13 ] ]
+						},
+						"symbol-placement" : "line",
+						"visibility": "visible"
+					},
+					"metadata" : {
+						"mapbox:group" : "1456163609504.0715"
+					},
+					 
+					"type" : "symbol",
+					"source" : "road",
+					"id" : "road_label",
+					"paint" : {
+						"text-color" : "#0000ff",
+						"text-halo-width" : 1.4,
+						"text-halo-blur" : 0.5
+					},
+					"source-layer" : "road"
+				}  ]
+}
+	
+		var map = new mapboxgl.Map({
+			container : 'map',
+			style : simple,
+			zoom : 12,
+			center : [ 116.41284, 39.88462 ],
+			maxZoom : 22,
+			minZoom : 5
+		});
+		
+		map.on('mousemove', function(e) {
+			var features = map.queryRenderedFeatures(e.point);
+			document.getElementById('features').innerHTML = JSON.stringify(
+					features, null, 2);
+		});
+		
+		map.showTileBoundaries = true;
+		
+	</script>
+
+</body>
+</html>

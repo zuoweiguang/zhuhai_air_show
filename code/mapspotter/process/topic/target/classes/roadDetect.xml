@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sources>
+    <sogou>
+        <initFilter>10</initFilter>
+        <firstPixelFilter>100</firstPixelFilter>
+        <eccentricityFilter>0.95</eccentricityFilter>
+        <secondPixelFilter>200</secondPixelFilter>
+    </sogou>
+</sources>
