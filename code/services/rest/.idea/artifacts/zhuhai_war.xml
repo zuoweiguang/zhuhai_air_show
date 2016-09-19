@@ -11,6 +11,7 @@
           <element id="module-output" name="rest" />
           <element id="file-copy" path="$PROJECT_DIR$/db.properties" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/web/add_staff.html" />
       </element>
       <element id="dir-copy" path="$PROJECT_DIR$/web" />
     </root>

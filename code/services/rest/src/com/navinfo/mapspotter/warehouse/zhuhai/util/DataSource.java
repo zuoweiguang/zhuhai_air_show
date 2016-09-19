@@ -12,12 +12,16 @@ public class DataSource {
         ZhuhaiEvents,
         ZhuhaiForecastHalfhour,
         ZhuhaiForecastOnehour,
+        ZhuhaiStaff,
+        ZhuhaiParking,
     }
 
     public enum LayerType {
         Events,
         ForecastHalfhour,
         ForecastOnehour,
+        Staff,
+        Parking,
     }
 
     public static List<LayerType> getLayers(SourceType srcType) {
@@ -36,6 +40,14 @@ public class DataSource {
                 targetTypes.add(LayerType.ForecastOnehour);
             }
             break;
+            case ZhuhaiStaff:{
+                targetTypes.add(LayerType.Staff);
+            }
+            break;
+            case ZhuhaiParking:{
+                targetTypes.add(LayerType.Parking);
+            }
+            break;
         }
 
         return targetTypes;
@@ -49,6 +61,10 @@ public class DataSource {
                 return SourceType.ZhuhaiForecastHalfhour;
             case ForecastOnehour:
                 return SourceType.ZhuhaiForecastOnehour;
+            case Staff:
+                return SourceType.ZhuhaiStaff;
+            case Parking:
+                return SourceType.ZhuhaiParking;
         }
         return null;
     }

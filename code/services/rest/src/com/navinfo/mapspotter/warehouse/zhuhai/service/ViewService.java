@@ -15,6 +15,8 @@ import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.io.WKTReader;
 
+import javax.ws.rs.FormParam;
+import javax.ws.rs.PathParam;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,7 @@ import java.util.Map;
 public class ViewService {
 
     private ViewDao viewDao = ViewDao.getInstance();
+    private static JSONObject prop = PropertiesUtil.getProperties();
 
     public static GeometryFactory geometryFactory = new GeometryFactory();
     private static ViewService instance;
@@ -41,9 +44,7 @@ public class ViewService {
 
     public byte[] getTrafficEvent(int z, int x, int y) {
         VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
-        byte[] result = null;
         try {
-            JSONObject prop = PropertiesUtil.getProperties();
             DBCollection col = viewDao.getCollection(prop.getString("eventColName"));
             List<DBObject> eventList = viewDao.getTrafficEvent(col, z, x, y);
             for (DBObject event: eventList) {
@@ -67,7 +68,6 @@ public class ViewService {
     public byte[] getForecasts(int z, int x, int y, String queryType) {
         VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
         WKTReader reader = new WKTReader();
-        byte[] result = null;
         try {
             JSONObject prop = PropertiesUtil.getProperties();
             DBCollection col = null;
@@ -106,6 +106,140 @@ public class ViewService {
         } finally {
             return vtm.encode();
         }
+    }
+
+    public byte[] getStaff(int z, int x, int y) {
+        VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
+
+        if (z < 10 || z > 17) {
+            return null;
+        }
+
+        try {
+            DBCollection col = viewDao.getCollection(prop.getString("userColName"));
+            List<DBObject> staffList = viewDao.getStaff(col);
+            for (DBObject staff: staffList) {
+                try {
+                    Map<String, Object> attributes = new HashMap<>();
+                    attributes.put("mobile_phone", staff.get("mobile_phone"));
+                    attributes.put("user_name", staff.get("user_name"));
+                    attributes.put("user_type", staff.get("user_type"));
+                    attributes.put("location", staff.get("location"));
+                    List<Double> location = (List<Double>)staff.get("location");
+
+                    Coordinate coordinate = new Coordinate(location.get(0), location.get(1));
+                    Point point = geometryFactory.createPoint(coordinate);
+                    TileUtils.convert2Piexl(x, y, z, point);
+                    vtm.addFeature(DataSource.LayerType.Staff.toString(), attributes, point);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return vtm.encode();
+        }
+    }
+
+    public String addStaff(String mobile_phone, String password, String confirm_password, String user_name,
+                           int user_type, String id_card, int sex, int age, String address) {
+        String result = null;
+        try {
+            String check = checkStaffValue(mobile_phone, password, confirm_password, user_name,
+                    user_type, id_card, sex, age, address);
+            if (null != check) {
+                return check;
+            }
+
+            DBCollection col = viewDao.getCollection(prop.getString("userColName"));
+            int exists = viewDao.checkUserExists(col, mobile_phone);
+            if (exists == 1) {
+                return "当前用户的手机号码已存在!!";
+            } else if (exists == -1) {
+                return "查询用户时出错了，请检查服务!!";
+            }
+
+            int insertResult = viewDao.addStaff(col, mobile_phone, password, confirm_password, user_name,
+                    user_type, id_card, sex, age, address);
+            if (insertResult != 0) {
+                result = "新增人员失败!!";
+            }
+            result = "新增人员成功!!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = e.getStackTrace().toString();
+        } finally {
+            return result;
+        }
+    }
+
+    private String checkStaffValue(String mobile_phone, String password, String confirm_password, String user_name,
+                                   int user_type, String id_card, int sex, int age, String address) {
+        if (null == mobile_phone || mobile_phone.trim().equals("")) {
+            return "联系电话不能为空!!";
+        }
+        else if (null == password || password.trim().equals("")) {
+            return "登陆密码不能为空!!";
+        }
+        else if (!confirm_password.trim().equals(password.trim())) {
+            return "密码确认与首次输入不一致!!";
+        }
+        else if (user_type != 1 && user_type != 2 && user_type != 3) {
+            return "执勤人员选择错误!!";
+        }
+        else {
+            return null;
+        }
+    }
+
+
+    public int staffUploadLocation(String mobile_phone, double lon, double lat) {
+        int result;
+        try {
+            DBCollection col = viewDao.getCollection(prop.getString("userColName"));
+            result = viewDao.staffUploadLocation(col, mobile_phone, lon, lat);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = -1;
+        }
+        return result;
+    }
+
+
+    public byte[] getParking(int z, int x, int y) {
+        VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
+
+        if (z < 10 || z > 17) {
+            return null;
+        }
+
+        try {
+            DBCollection col = viewDao.getCollection(prop.getString("parkingColName"));
+            List<DBObject> parkList = viewDao.getParking(col);
+            for (DBObject park: parkList) {
+                try {
+                    Map<String, Object> attributes = new HashMap<>();
+                    attributes.put("park_name", park.get("park_name"));
+                    attributes.put("park_total", park.get("park_total"));
+                    attributes.put("in_using", park.get("in_using"));
+                    attributes.put("geometry", park.get("geometry"));
+                    List<Double> geometry = (List<Double>)park.get("geometry");
+
+                    Coordinate coordinate = new Coordinate(geometry.get(0), geometry.get(1));
+                    Point point = geometryFactory.createPoint(coordinate);
+                    TileUtils.convert2Piexl(x, y, z, point);
+                    vtm.addFeature(DataSource.LayerType.Parking.toString(), attributes, point);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return vtm.encode();
+        }
+
     }
 
 

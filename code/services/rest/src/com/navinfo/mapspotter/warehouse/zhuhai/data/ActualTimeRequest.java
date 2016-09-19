@@ -30,7 +30,7 @@ public abstract class ActualTimeRequest {
     public Mongo mongo = null;
     private static DB db = null;
     private static DBCollection col = null;
-    private static Connection pgConn;
+    private Connection pgConn;
 
     public String sendGet(String url) {
 

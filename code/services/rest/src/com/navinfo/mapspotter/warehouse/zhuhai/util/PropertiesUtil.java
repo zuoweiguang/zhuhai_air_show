@@ -45,6 +45,8 @@ public class PropertiesUtil {
             String halfhour_forecastColName = props.getProperty("halfhour_forecastColName");
             String onehour_forecastColName = props.getProperty("onehour_forecastColName");
             String trafficColName = props.getProperty("trafficColName");
+            String userColName = props.getProperty("userColName");
+            String parkingColName = props.getProperty("parkingColName");
 
             propObj = new JSONObject();
 
@@ -65,6 +67,8 @@ public class PropertiesUtil {
             propObj.put("halfhour_forecastColName", halfhour_forecastColName);
             propObj.put("onehour_forecastColName", onehour_forecastColName);
             propObj.put("trafficColName", trafficColName);
+            propObj.put("userColName", userColName);
+            propObj.put("parkingColName", parkingColName);
 
 //            System.out.println(propObj.toString());
         } catch (Exception e) {

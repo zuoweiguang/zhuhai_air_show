@@ -68,8 +68,8 @@
       <file leaf-file-name="WarehouseDataType.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/process/convert/src/main/java/com/navinfo/mapspotter/process/convert/WarehouseDataType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="30" column="29" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="29" />
+            <state relative-caret-position="289">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1124,7 +1124,7 @@
       <workItem from="1473211911253" duration="8943000" />
       <workItem from="1473659558055" duration="4727000" />
       <workItem from="1473749698307" duration="6234000" />
-      <workItem from="1473840150892" duration="2367000" />
+      <workItem from="1473840150892" duration="2604000" />
     </task>
     <servers />
   </component>
@@ -1161,7 +1161,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="568374000" />
+    <option name="totallyTimeSpent" value="568611000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -1704,8 +1704,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/process/convert/src/main/java/com/navinfo/mapspotter/process/convert/WarehouseDataType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="30" column="29" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="29" />
+        <state relative-caret-position="289">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
