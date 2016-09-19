@@ -58,7 +58,7 @@ public class ViewController {
     public Response getTraffic(@PathParam("x") int x,
                                @PathParam("y") int y,
                                @PathParam("z") int z) {
-        byte[] result = null;
+        byte[] result = viewService.getTraffic(z, x, y);
         return buildResponse(result);
     }
 

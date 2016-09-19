@@ -71,6 +71,24 @@ public class ViewDao {
         }
     }
 
+    public List<DBObject> getTraffic(DBCollection col, int z, int x, int y) {
+        List<DBObject> trafficList = new ArrayList<>();
+        try {
+            String key = "tile_" + z;
+            String value = x + "_" + y;
+            DBObject query = new BasicDBObject(key, value);
+            DBCursor cursor = col.find(query);
+            while (cursor.hasNext()) {
+                DBObject event = cursor.next();
+                trafficList.add(event);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return trafficList;
+        }
+    }
+
     public List<DBObject> getStaff(DBCollection col) {
         List<DBObject> staffList = new ArrayList<>();
         try {

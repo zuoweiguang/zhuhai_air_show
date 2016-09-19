@@ -108,12 +108,45 @@ public class ViewService {
         }
     }
 
-    public byte[] getStaff(int z, int x, int y) {
+    public byte[] getTraffic(int z, int x, int y) {
+        if (z < 10 || z > 17) {
+            return null;
+        }
         VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
+        WKTReader reader = new WKTReader();
+        try {
+            DBCollection col = viewDao.getCollection(prop.getString("trafficColName"));
+            List<DBObject> trafficList = viewDao.getTraffic(col, z, x, y);
+            for (DBObject traffic: trafficList) {
+                try {
+                    Map<String, Object> attributes = new HashMap<>();
+                    attributes.put("link_id", traffic.get("link_id"));
+                    attributes.put("direct", traffic.get("direct"));
+                    attributes.put("functionclass", traffic.get("functionclass"));
+                    attributes.put("status", traffic.get("status"));
+                    attributes.put("travelTime", traffic.get("travelTime"));
+                    String geometryStr = (String)traffic.get("geometry");
+                    LineString line = (LineString) reader.read(geometryStr);
+                    TileUtils.convert2Piexl(x, y, z, line);
+                    vtm.addFeature(DataSource.LayerType.Traffic.toString(), attributes, line);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return vtm.encode();
+        }
+    }
+
+    public byte[] getStaff(int z, int x, int y) {
 
         if (z < 10 || z > 17) {
             return null;
         }
+
+        VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
 
         try {
             DBCollection col = viewDao.getCollection(prop.getString("userColName"));
