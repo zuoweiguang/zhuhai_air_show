@@ -124,7 +124,7 @@ public class ViewService {
                     attributes.put("direct", traffic.get("direct"));
                     attributes.put("functionclass", traffic.get("functionclass"));
                     attributes.put("status", traffic.get("status"));
-                    attributes.put("travelTime", traffic.get("travelTime"));
+                    attributes.put("travelTime", traffic.get("travel_time"));
                     String geometryStr = (String)traffic.get("geometry");
                     LineString line = (LineString) reader.read(geometryStr);
                     TileUtils.convert2Piexl(x, y, z, line);
@@ -241,11 +241,12 @@ public class ViewService {
 
 
     public byte[] getParking(int z, int x, int y) {
-        VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
 
         if (z < 10 || z > 17) {
             return null;
         }
+
+        VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
 
         try {
             DBCollection col = viewDao.getCollection(prop.getString("parkingColName"));
@@ -273,6 +274,45 @@ public class ViewService {
             return vtm.encode();
         }
 
+    }
+
+
+    public byte[] getBus(int z, int x, int y) {
+
+        if (z < 10 || z > 17) {
+            return null;
+        }
+
+        VectorTileEncoder vtm = new VectorTileEncoder(4096, 16, false);
+        WKTReader wktReader = new WKTReader();
+        try {
+            DBCollection col = viewDao.getCollection(prop.getString("busColName"));
+            List<DBObject> busList = viewDao.getBus(col, z, x, y);
+            for (DBObject bus: busList) {
+                try {
+                    Map<String, Object> attributes = new HashMap<>();
+                    attributes.put("bus_type", bus.get("bus_type"));
+                    attributes.put("card_num", bus.get("card_num"));
+                    attributes.put("start_location", bus.get("start_location"));
+                    attributes.put("end_location", bus.get("end_location"));
+                    attributes.put("current_location", bus.get("current_location"));
+                    attributes.put("busload", bus.get("busload"));
+                    attributes.put("current_load", bus.get("current_load"));
+
+                    String drive_line = (String)bus.get("drive_line");
+                    LineString line = (LineString) wktReader.read(drive_line);
+                    TileUtils.convert2Piexl(x, y, z, line);
+
+                    vtm.addFeature(DataSource.LayerType.Bus.toString(), attributes, line);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return vtm.encode();
+        }
     }
 
 

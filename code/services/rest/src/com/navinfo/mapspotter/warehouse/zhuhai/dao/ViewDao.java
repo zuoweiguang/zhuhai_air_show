@@ -183,5 +183,21 @@ public class ViewDao {
         }
     }
 
+    public List<DBObject> getBus(DBCollection col, int z, int x, int y) {
+        List<DBObject> busList = new ArrayList<>();
+        try {
+            DBCursor cursor = col.find();
+            while (cursor.hasNext()) {
+                DBObject event = cursor.next();
+                busList.add(event);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return busList;
+        }
+
+    }
+
 
 }

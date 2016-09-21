@@ -116,7 +116,7 @@ public class ViewController {
     public Response getBus(@PathParam("x") int x,
                            @PathParam("y") int y,
                            @PathParam("z") int z) {
-        byte[] result = null;
+        byte[] result = viewService.getBus(z, x, y);
         return buildResponse(result);
     }
 

@@ -22,7 +22,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -39,6 +41,7 @@ public class ActualTimeTraffic extends ActualTimeRequest {
     private DB db = null;
     private DBCollection corresCol = null;
     private DBCollection trafficStatusCol = null;
+    private SimpleDateFormat sdf = null;
 
     public ActualTimeTraffic() {
         pgConn = getPostgisConnection();
@@ -46,6 +49,7 @@ public class ActualTimeTraffic extends ActualTimeRequest {
         db = mongo.getDB(prop.getString("mongoDb"));
         corresCol = db.getCollection(prop.getString("corresponding"));
         trafficStatusCol = db.getCollection(prop.getString("trafficColName"));
+        sdf = new SimpleDateFormat("yyyyMMddHHmm");
     }
 
     public void getTraffic() {
@@ -85,7 +89,7 @@ public class ActualTimeTraffic extends ActualTimeRequest {
 //                    System.out.println("event:" + eventJson.toString());
 //                }
                 meshCount++;
-                System.out.println("make count:" + meshCount);
+                System.out.println("convert count:" + meshCount);
             }
 
             System.out.println("make mesh total:" + meshCount + ", convert mongo total:" + convertMongoCount);
@@ -93,6 +97,7 @@ public class ActualTimeTraffic extends ActualTimeRequest {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            threadPool.shutdown();
             if (null != pgConn) {
                 try {
                     pgConn.close();
@@ -103,7 +108,6 @@ public class ActualTimeTraffic extends ActualTimeRequest {
             if (null != mongo) {
                 mongo.close();
             }
-            threadPool.shutdown();
         }
 
     }
@@ -150,16 +154,21 @@ public class ActualTimeTraffic extends ActualTimeRequest {
                 String rticIdStr = String.format("%05d", rticId);
                 String rtic_id = meshCode + rticIdStr;
                 DBCursor cursor = corresCol.find(new BasicDBObject("rtic_id", rtic_id));
-                List<Integer> linkPidList = new ArrayList<>();
-                List<Integer> tempList = new ArrayList<>();
+                List<Future> futures = new ArrayList<>();
                 while (cursor.hasNext()) {
                     List<Integer> link_pid_list = (List) cursor.next().get("link_pid_list");
                     if (link_pid_list.size() == 0) {
                         continue;
                     }
-                    threadPool.execute(new Convert2mongo(this.pgConn, link_pid_list, this.trafficStatusCol,
+                    Future future = threadPool.submit(new Convert2mongo(this.pgConn, link_pid_list, this.trafficStatusCol, sdf,
                                                                         meshCode, rticIdStr, iLOS, travelTime));
+                    futures.add(future);
+//                    callables.add(new Convert2mongo(this.pgConn, link_pid_list, this.trafficStatusCol, sdf,
+//                            meshCode, rticIdStr, iLOS, travelTime));
                     convertMongoCount++;
+                }
+                for (Future future: futures) {
+                    future.get();
                 }
             }
 
@@ -247,13 +256,15 @@ class Convert2mongo extends Thread {
     private String rticIdStr;
     private int iLOS;
     private int travelTime;
+    private SimpleDateFormat sdf = null;
 
-    public Convert2mongo(Connection pgConn, List<Integer> link_pid_list, DBCollection trafficStatusCol,
+    public Convert2mongo(Connection pgConn, List<Integer> link_pid_list, DBCollection trafficStatusCol, SimpleDateFormat sdf,
                             int meshCode, String rticIdStr, int iLOS, int travelTime) {
         this.link_pid_list = link_pid_list;
         this.pgConn = pgConn;
         this.wkbReader = new WKBReader();
         this.trafficStatusCol = trafficStatusCol;
+        this.sdf = sdf;
         this.meshCode = meshCode;
         this.rticIdStr = rticIdStr;
         this.iLOS = iLOS;
@@ -282,7 +293,8 @@ class Convert2mongo extends Thread {
                     trafficObj.put("functionclass", rs.getInt("functionclass"));
                     trafficObj.put("status", iLOS);
                     trafficObj.put("rtic_id", meshCode + rticIdStr);
-                    trafficObj.put("travelTime", travelTime);
+                    trafficObj.put("travel_time", travelTime);
+                    trafficObj.put("update_time", sdf.format(new Date()));
                     byte[] wkb = rs.getBytes("geom");
                     LineString lineString = (LineString) wkbReader.read(wkb);
                     trafficObj.put("geometry", lineString.toString());

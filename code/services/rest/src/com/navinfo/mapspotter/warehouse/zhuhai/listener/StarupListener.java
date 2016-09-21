@@ -30,6 +30,9 @@ public class StarupListener implements ServletContextListener {
         // 每隔 10分钟 执行一次
         timer.schedule(new ForecastsTimerTask(sce.getServletContext()), 0, 10 * 60 * 1000);
         sce.getServletContext().log("添加 [拥堵预测] 任务调度表");
+        // 每隔 15分钟 执行一次
+        timer.schedule(new TrafficTimerTask(sce.getServletContext()), 0, 15 * 60 * 1000);
+        sce.getServletContext().log("添加 [交通路况] 任务调度表");
 
     }
 

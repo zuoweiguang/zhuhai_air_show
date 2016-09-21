@@ -12,12 +12,11 @@
           <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:3.2.2" />
           <element id="dir-copy" path="$PROJECT_DIR$/lib" />
         </element>
-        <element id="file-copy" path="$PROJECT_DIR$/web/add_staff.jsp" />
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/dataserver/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="rest/web/Web" />
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
     </root>
   </artifact>
 </component>
