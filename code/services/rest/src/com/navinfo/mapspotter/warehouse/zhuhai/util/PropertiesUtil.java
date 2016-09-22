@@ -31,6 +31,8 @@ public class PropertiesUtil {
             String actualTimeEventUrl = props.getProperty("actualTimeEventUrl");
             String ActualTimeForecastUrl = props.getProperty("ActualTimeForecastUrl");
             String ActualTimeTrafficUrl = props.getProperty("ActualTimeTrafficUrl");
+            String staffSyncUrl = props.getProperty("staffSyncUrl");
+            String staffSyncCode = props.getProperty("staffSyncCode");
 
             String pgHost = props.getProperty("pgHost");
             int pgPort = Integer.valueOf(props.getProperty("pgPort"));
@@ -55,6 +57,8 @@ public class PropertiesUtil {
             propObj.put("actualTimeEventUrl", actualTimeEventUrl);
             propObj.put("ActualTimeForecastUrl", ActualTimeForecastUrl);
             propObj.put("ActualTimeTrafficUrl", ActualTimeTrafficUrl);
+            propObj.put("staffSyncUrl", staffSyncUrl);
+            propObj.put("staffSyncCode", staffSyncCode);
 
             propObj.put("pgHost", pgHost);
             propObj.put("pgPort", pgPort);
